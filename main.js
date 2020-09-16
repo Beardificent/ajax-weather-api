@@ -25,11 +25,11 @@ function getCity () {
     const apiKey = config.MY_KEY;
     fetch(urlPartOne + city + urlPartTwo + '&APPID=' + apiKey)
         .then((response) => response.json())
-        .then((weather) => {
-
-        averageTemperature.textContent = data["list"][i]["main"]["temp"];
-
-            }
+        .then((data) => {
+                for (i = 0; i < 6; i++) {
+                    averageTemperatureDiv.textContent = data["list"][i]["main"]["temp"];
+                }
+             }
         )
 
 }
