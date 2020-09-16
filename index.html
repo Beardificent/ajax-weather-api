@@ -9,13 +9,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- Main CSS-->
-    <!--<link rel="stylesheet" href="style.css">-->
+    <link rel="stylesheet" href="main.css">
     <title>weather api</title>
 </head>
 <body>
 
-<input type="text" class="inputField" id="questionOne" placeholder="Antwerp">
-<button id="findCity" class="run">GO TO MY CITY</button>
+<div class="search-bar">
+    <header>
+        <input type="text" class="input-field" id="set-city"
+               placeholder="Charmander is not a city">
+        <button id="find-city" class="run">GO TO MY CITY</button>
+    </header>
+    <main>
+        <section class="location">
+            <div class="city">Antwerp, BE</div>
+            <div class="date">Wednesday 16 September 2020</div>
+        </section>
+        <div class="current">
+            <div class="temperature">15<span>°c</span></div>
+            <div class="weather">Sunny</div>
+            <div class="hi-low">13°c / 16°c</div>
+        </div>
+    </main>
+</div>
+
 
 
 
