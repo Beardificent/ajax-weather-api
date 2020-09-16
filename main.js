@@ -6,7 +6,7 @@ function getWeather () {
     let urlPartOne = 'https://api.openweathermap.org/data/2.5/forecast?q='
     let city = document.getElementById('questionOne').value;
     let urlParttwo = '&units=metric'
-    const apiKey = '6b4f7d4420caea5b058e7a4ee75467c1';
+    const apiKey = config.MY_KEY;
 
 
 
