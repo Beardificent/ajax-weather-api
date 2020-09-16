@@ -1,22 +1,27 @@
+
+
 function getWeather () {
     console.log('button works');
-    let urlPartOne = 'https://api.openweathermap.org/data/2.5/forecastq='
+
+    let urlPartOne = 'https://api.openweathermap.org/data/2.5/forecast?q='
     let city = document.getElementById('questionOne').value;
-    let urlPartTwo = '&units=metric';
-    let apiKey = '7aa28471737ee768556bdeb7c6b3a4df';
+    let urlParttwo = '&units=metric'
+    let apiKey = '6b4f7d4420caea5b058e7a4ee75467c1';
 
 
-    console.log(urlPartOne + city + urlPartTwo + '&APPID=' + apiKey);
 
-    fetch(urlPartOne + city + urlPartTwo + '&APPID=' + apiKey)
+    console.log(urlPartOne+ city + urlParttwo + '&APPID=' + apiKey);
+
+    /*fetch(url + city + '&APPID=' + apiKey)
         .then((response) => response.json())
         .then((data) => {
+    console.log(url + city + '&APPID=' + apiKey)
 
+     */
 
-        })
 
 }
 
 
 //EVENT LISTENERS
-document.getElementById('findCity').addEventListener('click', getWeather)
+document.getElementById('findCity').addEventListener('click', getWeather);
