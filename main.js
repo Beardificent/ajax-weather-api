@@ -24,6 +24,14 @@ const dateDayThree = document.querySelector('.location-three .date-three');
 const weatherDayThree = document.querySelector('.current-three .weather-three');
 const minMaxDayThree = document.querySelector('.min-max-three');
 
+
+const dateDayFour = document.querySelector('.location-four .date-four');
+const weatherDayFour = document.querySelector('.current-four .weather-four');
+const minMaxDayFour = document.querySelector('.min-max-four');
+
+const dateDayFive = document.querySelector('.location-five .date-five');
+const weatherDayFive = document.querySelector('.current-five .weather-five');
+const minMaxDayFive = document.querySelector('.min-max-five');
 //FUNCTIONS
 
 function setDate (d){
@@ -35,7 +43,7 @@ function setDate (d){
     ];
     let day = weekDays[d.getDay()];
     let date = d.getDate();
-    let month = d.getMonth();
+    let month = months [d.getMonth()];
     let year = d.getFullYear();
 
     return`${day} ${date} ${month} ${year}`;
@@ -57,7 +65,6 @@ function getResults () {
     let urlPartTwo = '&units=metric&exclude=hourly&APPID=';
     let apiKey = config.MY_KEY;
     let urlFull = urlPartOne + city + urlPartTwo + apiKey;
-
     console.log(urlFull);
     fetch(urlFull)
         .then(weather => {
@@ -72,25 +79,32 @@ function displayResults (weather) {
     cityDiv.innerText = `${weather.city.name}, ${weather.city.country}`;
     currentTemperatureDiv.innerHTML= `${Math.round(weather.list[0].main.temp)}<span>°C</span>`;
     descriptionDiv.innerText = `${weather.list[0].weather[0].description}`;
-    averageDiv.innerText = `${Math.round(weather.list[0].main.temp_min)}°c / ${Math.round(weather.list[0].main.temp_max)}°c`;
+    averageDiv.innerText = Math.round(weather.list[0].main.temp_min) + Math.round(weather.list[0].main.temp_max) / 2 +'°c';
     console.log(weather.list);
 
     dateDayOne.innerText = `${weather.list[1].dt_txt}`;
     weatherDayOne.innerText = `${weather.list[1].weather[0].description}`;
-    minMaxDayOne.innerText = `${Math.round(weather.list[1].main.temp_min)}°c / ${Math.round(weather.list[1].main.temp_max)}°c`;
-
-
+    minMaxDayOne.innerText = Math.round(weather.list[1].main.temp_min) + Math.round(weather.list[1].main.temp_max) / 2 +'°c';
 
     dateDayTwo.innerText = `${weather.list[2].dt_txt}`;
     weatherDayTwo.innerText = `${weather.list[2].weather[0].description}`;
-    minMaxDayTwo.innerText = `${Math.round(weather.list[2].main.temp_min)}°c / ${Math.round(weather.list[2].main.temp_max)}°c`;
+    minMaxDayTwo.innerText = Math.round(weather.list[2].main.temp_min) + Math.round(weather.list[2].main.temp_max) / 2 +'°c';
 
 
     dateDayThree.innerText = `${weather.list[3].dt_txt}`;
     weatherDayThree.innerText = `${weather.list[3].weather[0].description}`;
-    minMaxDayThree.innerText = `${Math.round(weather.list[3].main.temp_min)}°c / ${Math.round(weather.list[3].main.temp_max)}°c`;
+    minMaxDayThree.innerText = Math.round(weather.list[3].main.temp_min) + Math.round(weather.list[3].main.temp_max) / 2 +'°c';
 
 
+
+    dateDayFour.innerText = `${weather.list[4].dt_txt}`;
+    weatherDayFour.innerText = `${weather.list[4].weather[0].description}`;
+    minMaxDayFour.innerText = Math.round(weather.list[4].main.temp_min) + Math.round(weather.list[4].main.temp_max) / 2 +'°c';
+
+
+    dateDayFive.innerText = `${weather.list[5].dt_txt}`;
+    weatherDayFive.innerText = `${weather.list[5].weather[0].description}`;
+    minMaxDayFive.innerText = Math.round(weather.list[5].main.temp_min) + Math.round(weather.list[5].main.temp_max) / 2 +'°c';
 }
 
 
