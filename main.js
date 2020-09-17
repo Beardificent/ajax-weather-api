@@ -12,6 +12,18 @@ const averageDiv = document.querySelector('.min-max');
 
 let current = new Date();
 
+const dateDayOne = document.querySelector('.location-one .date-one');
+const weatherDayOne = document.querySelector('.current-one .weather-one');
+const minMaxDayOne = document.querySelector('.min-max-one');
+
+const dateDayTwo = document.querySelector('.location-two .date-two');
+const weatherDayTwo = document.querySelector('.current-two .weather-two');
+const minMaxDayTwo = document.querySelector('.min-max-two');
+
+const dateDayThree = document.querySelector('.location-three .date-three');
+const weatherDayThree = document.querySelector('.current-three .weather-three');
+const minMaxDayThree = document.querySelector('.min-max-three');
+
 //FUNCTIONS
 
 function setDate (d){
@@ -42,7 +54,7 @@ function setQuery (event) {
 function getResults () {
     let urlPartOne = 'https://api.openweathermap.org/data/2.5/forecast?q=';
     let city = document.getElementById('set-city').value;
-    let urlPartTwo = '&units=metric&APPID=';
+    let urlPartTwo = '&units=metric&exclude=hourly&APPID=';
     let apiKey = config.MY_KEY;
     let urlFull = urlPartOne + city + urlPartTwo + apiKey;
 
@@ -64,28 +76,22 @@ function displayResults (weather) {
     console.log(weather.list);
 
 
-    const dateDayOne = document.querySelector('.location-one .date-one');
+
     dateDayOne.innerText = `${weather.list[1].dt_txt}`;
-    const weatherDayOne = document.querySelector('.current-one .weather-one');
     weatherDayOne.innerText = `${weather.list[1].weather[0].description}`;
-    const minMaxDayOne = document.querySelector('.min-max-one');
     minMaxDayOne.innerText = `${Math.round(weather.list[1].main.temp_min)}°c / ${Math.round(weather.list[1].main.temp_max)}°c`;
 
 
-    const dateDayTwo = document.querySelector('.location-two .date-two');
+
     dateDayTwo.innerText = `${weather.list[2].dt_txt}`;
-    const weatherDayTwo = document.querySelector('.current-two .weather-two');
     weatherDayTwo.innerText = `${weather.list[2].weather[0].description}`;
-    const minMaxDayTwo = document.querySelector('.min-max-two');
     minMaxDayTwo.innerText = `${Math.round(weather.list[2].main.temp_min)}°c / ${Math.round(weather.list[2].main.temp_max)}°c`;
 
 
-    const dateDayThree = document.querySelector('.location-three .date-three');
+
     dateDayThree.innerText = weather.list[3].dt_txt;
-    const weatherDayThree = document.querySelector('.current-three .weather-three');
     weatherDayThree.innerText = weather.list[3].weather[0].description;
-    const minMaxDayThree = document.querySelector('.min-max--three');
-    minMaxDayThree.innerText = `${Math.round(weather.list[3].main.temp)}<span>°C</span>`;
+    minMaxDayThree.innerText = `${Math.round(weather.list[2].main.temp_min)}°c / ${Math.round(weather.list[2].main.temp_max)}°c`;
 
 
 }
