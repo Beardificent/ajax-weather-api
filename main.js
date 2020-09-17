@@ -1,7 +1,7 @@
 //SEARCHBAR
 
 const searchbar = document.querySelector('.search-bar');
-searchbar.addEventListener('keypress', setQuery);
+searchbar.addEventListener('keypress', pressEnter);
 
 //CONSTANTS AND VARIABLES
 const cityDiv = document.querySelector('.location .city');
@@ -18,7 +18,7 @@ const minMaxDayOne = document.querySelector('.min-max-one');
 
 const dateDayTwo = document.querySelector('.location-two .date-two');
 const weatherDayTwo = document.querySelector('.current-two .weather-two');
-const minMaxDayTwo = document.querySelector('.min-max-two');
+const minMaxDayTwo = document.querySelector('.min-max-two')
 
 const dateDayThree = document.querySelector('.location-three .date-three');
 const weatherDayThree = document.querySelector('.current-three .weather-three');
@@ -43,7 +43,7 @@ function setDate (d){
 
 
 //keycode 13 is linked with the enter button :)
-function setQuery (event) {
+function pressEnter (event) {
     if (event.keyCode === 13){
         getResults(searchbar.value)
     }
@@ -75,8 +75,6 @@ function displayResults (weather) {
     averageDiv.innerText = `${Math.round(weather.list[0].main.temp_min)}°c / ${Math.round(weather.list[0].main.temp_max)}°c`;
     console.log(weather.list);
 
-
-
     dateDayOne.innerText = `${weather.list[1].dt_txt}`;
     weatherDayOne.innerText = `${weather.list[1].weather[0].description}`;
     minMaxDayOne.innerText = `${Math.round(weather.list[1].main.temp_min)}°c / ${Math.round(weather.list[1].main.temp_max)}°c`;
@@ -88,10 +86,9 @@ function displayResults (weather) {
     minMaxDayTwo.innerText = `${Math.round(weather.list[2].main.temp_min)}°c / ${Math.round(weather.list[2].main.temp_max)}°c`;
 
 
-
-    dateDayThree.innerText = weather.list[3].dt_txt;
-    weatherDayThree.innerText = weather.list[3].weather[0].description;
-    minMaxDayThree.innerText = `${Math.round(weather.list[2].main.temp_min)}°c / ${Math.round(weather.list[2].main.temp_max)}°c`;
+    dateDayThree.innerText = `${weather.list[3].dt_txt}`;
+    weatherDayThree.innerText = `${weather.list[3].weather[0].description}`;
+    minMaxDayThree.innerText = `${Math.round(weather.list[3].main.temp_min)}°c / ${Math.round(weather.list[3].main.temp_max)}°c`;
 
 
 }
