@@ -62,6 +62,7 @@ function pressEnter (event) {
 function getResults () {
     let urlPartOne = 'https://api.openweathermap.org/data/2.5/forecast?q=';
     let city = document.getElementById('set-city').value;
+   // let country = document.getElementById('set-country').value;
     let urlPartTwo = '&units=metric&exclude=hourly&APPID=';
     let apiKey = config.MY_KEY;
     let urlFull = urlPartOne + city + urlPartTwo + apiKey;
@@ -79,7 +80,7 @@ function displayResults (weather) {
     cityDiv.innerText = `${weather.city.name}, ${weather.city.country}`;
     currentTemperatureDiv.innerHTML= `${Math.round(weather.list[0].main.temp)}<span>°C</span>`;
     descriptionDiv.innerText = `${weather.list[0].weather[0].description}`;
-    averageDiv.innerText = Math.round(weather.list[0].main.temp_min) + Math.round(weather.list[0].main.temp_max) / 2 +'°c';
+    averageDiv.innerText = 'Average temperature today is ' + (Math.round(weather.list[0].main.temp_min) + Math.round(weather.list[0].main.temp_max) / 2) +'°c';
     console.log(weather.list);
 
     dateDayOne.innerText = `${weather.list[1].dt_txt}`;
