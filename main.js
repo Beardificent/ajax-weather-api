@@ -20,7 +20,7 @@ function getResults () {
     let urlPartOne = 'https://api.openweathermap.org/data/2.5/forecast?q=';
     let city = document.getElementById('set-city').value;
     let urlPartTwo = '&units=metric&APPID=';
-    const apiKey = config.MY_KEY;
+    let apiKey = config.MY_KEY;
     let urlFull = urlPartOne + city + urlPartTwo + apiKey;
 
 
@@ -34,9 +34,21 @@ function getResults () {
     });
 }
 function displayResults (weather) {
-    fetch()
+   /*
+    let oneCallFetch = 'https://api.openweathermap.org/data/2.5/onecall?';
+    let lat = weather.city.coords.latitude;
+    let lon = weather.city.coords.longitude;
+    let urlPartTwo = '&units=metric&APPID=';
+    let apiKey = config.MY_KEY;
+    let oneCallUrl = oneCallFetch + lat + lon + urlPartTwo + apiKey;
 
-    console.log(weather);
+        fetch(oneCallUrl)
+            .then(weather => {
+                return weather.json ();
+            }).then(data => {
+            displayResults (data)
+        });
+*/
 
     cityDiv.innerText = `${weather.city.name}, ${weather.city.country}`;
 
@@ -45,11 +57,11 @@ function displayResults (weather) {
     theDateDiv.innerText = dateBuilder(current);
 
 
-    currentTemperatureDiv.innerHTML= `${Math.round(weather.list[0].main[0].temp)}<span>°C</span>`;
+    //currentTemperatureDiv.innerHTML= `${Math.round(weather.list[0].main[0].temp)}<span>°C</span>`;
 
-    descriptionDiv.innerText = weather.weather[0].main;
+   // descriptionDiv.innerText = weather.weather[0].main;
 
-    averageDiv.innerText = `${weather.main.temp_min}°c / ${weather.main.temp_max}°c`;
+  //  averageDiv.innerText = `${weather.main.temp_min}°c / ${weather.main.temp_max}°c`;
 }
 
 function dateBuilder (d){
