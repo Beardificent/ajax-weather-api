@@ -64,8 +64,8 @@ function displayResults (weather) {
     console.log(weather.list);
 
 
-
-
+    const dateDayOne = document.querySelector('.location-one .date-one');
+    dateDayOne.innerText = weather.list[1].dt_txt;
 }
 
 
