@@ -1,11 +1,34 @@
+//SEARCHBAR
+
 const searchbar = document.querySelector('.search-bar');
 searchbar.addEventListener('keypress', setQuery);
 
-const currentTemperatureDiv = document.querySelector('.current .temperature');
-const theDateDiv = document.querySelector('.location .date');
+//CONSTANTS AND VARIABLES
 const cityDiv = document.querySelector('.location .city');
+const theDateDiv = document.querySelector('.location .date');
+const currentTemperatureDiv = document.querySelector('.current .temperature');
 const descriptionDiv = document.querySelector('.current .weather');
 const averageDiv = document.querySelector('.min-max');
+
+let current = new Date();
+
+//FUNCTIONS
+
+function setDate (d){
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+        'September', 'October', 'November', 'December'
+    ];
+    let weekDays = [
+        'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+    ];
+    let day = weekDays[d.getDay()];
+    let date = d.getDate();
+    let month = d.getMonth();
+    let year = d.getFullYear();
+
+    return`${day} ${date} ${month} ${year}`;
+}
+
 
 //keycode 13 is linked with the enter button :)
 function setQuery (event) {
@@ -23,8 +46,6 @@ function getResults () {
     let apiKey = config.MY_KEY;
     let urlFull = urlPartOne + city + urlPartTwo + apiKey;
 
-
-
     console.log(urlFull);
     fetch(urlFull)
         .then(weather => {
@@ -35,48 +56,17 @@ function getResults () {
 }
 function displayResults (weather) {
 
-    let oneCallFetch = 'https://api.openweathermap.org/data/2.5/onecall?';
-    let lat = weather.city.coords.latitude;
-    let lon = weather.city.coords.longitude;
-    let urlPartTwo = '&units=metric&APPID=';
-    let apiKey = config.MY_KEY;
-    let oneCallUrl = oneCallFetch + lat + lon + urlPartTwo + apiKey;
-
-        fetch(oneCallUrl)
-            .then(weather => {
-                return weather.json ();
-            }).then(data => {
-            displayResults (data)
-        });
-
-
+    theDateDiv.innerText = setDate(current);
     cityDiv.innerText = `${weather.city.name}, ${weather.city.country}`;
+    currentTemperatureDiv.innerHTML= `${Math.round(weather.list[0].main.temp)}<span>°C</span>`;
+    descriptionDiv.innerText = `${weather.list[0].weather[0].description}`;
+    averageDiv.innerText = `${Math.round(weather.list[0].main.temp_min)}°c / ${Math.round(weather.list[0].main.temp_max)}°c`;
+    console.log(weather.list);
 
-    let current = new Date();
-
-    theDateDiv.innerText = dateBuilder(current);
 
 
-    //currentTemperatureDiv.innerHTML= `${Math.round(weather.list[0].main[0].temp)}<span>°C</span>`;
 
-   // descriptionDiv.innerText = weather.weather[0].main;
-
-  //  averageDiv.innerText = `${weather.main.temp_min}°c / ${weather.main.temp_max}°c`;
 }
 
-function dateBuilder (d){
-    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
-        'September', 'October', 'November', 'December'
-    ];
-    let weekDays = [
-        'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
-    ];
-    let day = weekDays[d.getDay()];
-    let date = d.getDate();
-    let month = d.getMonth();
-    let year = d.getFullYear();
-
-    return`${day} ${date} ${month} ${year}`;
-}
 
 
