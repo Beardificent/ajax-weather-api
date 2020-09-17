@@ -1,42 +1,70 @@
-//CONSTANTS AND VARIABLES
-const theDateDiv = document.querySelector('.thedate');
-const cityDiv = document.querySelector('.city');
-const averageTemperatureDiv = document.querySelector('.averagetemperature');
-const descriptionDiv = document.querySelector('.description');
-const weekForeCastDiv = document.querySelector('.weekforecast');
+const searchbar = document.querySelector('.search-bar');
+searchbar.addEventListener('keypress', setQuery);
 
-//START FUNCTION getWeather
+const currentTemperatureDiv = document.querySelector('.current .temperature');
+const theDateDiv = document.querySelector('.location .date');
+const cityDiv = document.querySelector('.location .city');
+const descriptionDiv = document.querySelector('.current .weather');
+const averageDiv = document.querySelector('.min-max');
 
-function getWeather () {
-    getCity ()
-
+//keycode 13 is linked with the enter button :)
+function setQuery (event) {
+    if (event.keyCode === 13){
+        getResults(searchbar.value)
+    }
 }
 
-//END FUNCTION getWeather
-////
-//START FUNCTION getCity
 
-function getCity () {
 
+function getResults () {
     let urlPartOne = 'https://api.openweathermap.org/data/2.5/forecast?q=';
-    let city = document.getElementById('questionOne').value;
-    let urlPartTwo = '&units=metric';
-    console.log('getCity responds to button');
+    let city = document.getElementById('set-city').value;
+    let urlPartTwo = '&units=metric&APPID=';
     const apiKey = config.MY_KEY;
-    fetch(urlPartOne + city + urlPartTwo + '&APPID=' + apiKey)
-        .then((response) => response.json())
-        .then((data) => {
-                for (i = 0; i < 6; i++) {
-                    averageTemperatureDiv.textContent = data["list"][i]["main"]["temp"];
-                }
-             }
-        )
+    let urlFull = urlPartOne + city + urlPartTwo + apiKey;
 
+
+
+    console.log(urlFull);
+    fetch(urlFull)
+        .then(weather => {
+            return weather.json ();
+        }).then(data => {
+        displayResults (data)
+    });
+}
+function displayResults (weather) {
+    fetch()
+
+    console.log(weather);
+
+    cityDiv.innerText = `${weather.city.name}, ${weather.city.country}`;
+
+    let current = new Date();
+
+    theDateDiv.innerText = dateBuilder(current);
+
+
+    currentTemperatureDiv.innerHTML= `${Math.round(weather.list[0].main[0].temp)}<span>°C</span>`;
+
+    descriptionDiv.innerText = weather.weather[0].main;
+
+    averageDiv.innerText = `${weather.main.temp_min}°c / ${weather.main.temp_max}°c`;
 }
 
-//END FUNCTION getCity
+function dateBuilder (d){
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+        'September', 'October', 'November', 'December'
+    ];
+    let weekDays = [
+        'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+    ];
+    let day = weekDays[d.getDay()];
+    let date = d.getDate();
+    let month = d.getMonth();
+    let year = d.getFullYear();
+
+    return`${day} ${date} ${month} ${year}`;
+}
 
 
-
-//EVENT LISTENERS
-document.getElementById('findCity').addEventListener('click', getWeather);
