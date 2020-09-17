@@ -34,7 +34,7 @@ function getResults () {
     });
 }
 function displayResults (weather) {
-   /*
+
     let oneCallFetch = 'https://api.openweathermap.org/data/2.5/onecall?';
     let lat = weather.city.coords.latitude;
     let lon = weather.city.coords.longitude;
@@ -48,7 +48,7 @@ function displayResults (weather) {
             }).then(data => {
             displayResults (data)
         });
-*/
+
 
     cityDiv.innerText = `${weather.city.name}, ${weather.city.country}`;
 
