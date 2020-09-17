@@ -65,8 +65,31 @@ function displayResults (weather) {
 
 
     const dateDayOne = document.querySelector('.location-one .date-one');
-    dateDayOne.innerText = weather.list[1].dt_txt;
+    dateDayOne.innerText = `${weather.list[1].dt_txt}`;
+    const weatherDayOne = document.querySelector('.current-one .weather-one');
+    weatherDayOne.innerText = `${weather.list[1].weather[0].description}`;
+    const minMaxDayOne = document.querySelector('.min-max-one');
+    minMaxDayOne.innerText = `${Math.round(weather.list[1].main.temp_min)}°c / ${Math.round(weather.list[1].main.temp_max)}°c`;
+
+
+    const dateDayTwo = document.querySelector('.location-two .date-two');
+    dateDayTwo.innerText = `${weather.list[2].dt_txt}`;
+    const weatherDayTwo = document.querySelector('.current-two .weather-two');
+    weatherDayTwo.innerText = `${weather.list[2].weather[0].description}`;
+    const minMaxDayTwo = document.querySelector('.min-max-two');
+    minMaxDayTwo.innerText = `${Math.round(weather.list[2].main.temp_min)}°c / ${Math.round(weather.list[2].main.temp_max)}°c`;
+
+
+    const dateDayThree = document.querySelector('.location-three .date-three');
+    dateDayThree.innerText = weather.list[3].dt_txt;
+    const weatherDayThree = document.querySelector('.current-three .weather-three');
+    weatherDayThree.innerText = weather.list[3].weather[0].description;
+    const minMaxDayThree = document.querySelector('.min-max--three');
+    minMaxDayThree.innerText = `${Math.round(weather.list[3].main.temp)}<span>°C</span>`;
+
+
 }
+
 
 
 
