@@ -54,6 +54,7 @@ function setDate (d){
 function pressEnter (event) {
     if (event.keyCode === 13){
         getResults(searchbar.value)
+
     }
 }
 
@@ -74,6 +75,8 @@ function getResults () {
         displayResults (data)
     });
 }
+
+
 function displayResults (weather) {
 
     theDateDiv.innerText = setDate(current);
@@ -83,29 +86,31 @@ function displayResults (weather) {
     averageDiv.innerText = 'Average temperature today is ' + (Math.round(weather.list[0].main.temp_min) + Math.round(weather.list[0].main.temp_max) / 2) +'°c';
     console.log(weather.list);
 
-    dateDayOne.innerText = `${weather.list[1].dt_txt}`;
-    weatherDayOne.innerText = `${weather.list[1].weather[0].description}`;
-    minMaxDayOne.innerText = Math.round(weather.list[1].main.temp_min) + Math.round(weather.list[1].main.temp_max) / 2 +'°c';
 
-    dateDayTwo.innerText = `${weather.list[2].dt_txt}`;
-    weatherDayTwo.innerText = `${weather.list[2].weather[0].description}`;
-    minMaxDayTwo.innerText = Math.round(weather.list[2].main.temp_min) + Math.round(weather.list[2].main.temp_max) / 2 +'°c';
+    dateDayOne.innerText = `${weather.list[9].dt_txt}`;
+    weatherDayOne.innerText = `${weather.list[9].weather[0].description}`;
+    minMaxDayOne.innerText = Math.round(weather.list[9].main.temp_min) + Math.round(weather.list[9].main.temp_max) / 2 +'°c';
 
 
-    dateDayThree.innerText = `${weather.list[3].dt_txt}`;
-    weatherDayThree.innerText = `${weather.list[3].weather[0].description}`;
-    minMaxDayThree.innerText = Math.round(weather.list[3].main.temp_min) + Math.round(weather.list[3].main.temp_max) / 2 +'°c';
+    dateDayTwo.innerText = `${weather.list[17].dt_txt}`;
+    weatherDayTwo.innerText = `${weather.list[17].weather[0].description}`;
+    minMaxDayTwo.innerText = Math.round(weather.list[17].main.temp_min) + Math.round(weather.list[17].main.temp_max) / 2 +'°c';
+
+
+    dateDayThree.innerText = `${weather.list[25].dt_txt}`;
+    weatherDayThree.innerText = `${weather.list[25].weather[0].description}`;
+    minMaxDayThree.innerText = Math.round(weather.list[25].main.temp_min) + Math.round(weather.list[25].main.temp_max) / 2 +'°c';
 
 
 
-    dateDayFour.innerText = `${weather.list[4].dt_txt}`;
-    weatherDayFour.innerText = `${weather.list[4].weather[0].description}`;
-    minMaxDayFour.innerText = Math.round(weather.list[4].main.temp_min) + Math.round(weather.list[4].main.temp_max) / 2 +'°c';
+    dateDayFour.innerText = `${weather.list[33].dt_txt}`;
+    weatherDayFour.innerText = `${weather.list[33].weather[0].description}`;
+    minMaxDayFour.innerText = Math.round(weather.list[33].main.temp_min) + Math.round(weather.list[33].main.temp_max) / 2 +'°c';
 
 
-    dateDayFive.innerText = `${weather.list[5].dt_txt}`;
-    weatherDayFive.innerText = `${weather.list[5].weather[0].description}`;
-    minMaxDayFive.innerText = Math.round(weather.list[5].main.temp_min) + Math.round(weather.list[5].main.temp_max) / 2 +'°c';
+    dateDayFive.innerText = `${weather.list[39].dt_txt}`;
+    weatherDayFive.innerText = `${weather.list[39].weather[0].description}`;
+    minMaxDayFive.innerText = Math.round(weather.list[39].main.temp_min) + Math.round(weather.list[39].main.temp_max) / 2 +'°c';
 }
 
 
