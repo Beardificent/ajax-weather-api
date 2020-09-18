@@ -9,6 +9,7 @@ const theDateDiv = document.querySelector('.location .date');
 const currentTemperatureDiv = document.querySelector('.current .temperature');
 const descriptionDiv = document.querySelector('.current .weather');
 const averageDiv = document.querySelector('.min-max');
+let icon = document.getElementById('#icon');
 
 let current = new Date();
 
@@ -32,6 +33,43 @@ const minMaxDayFour = document.querySelector('.min-max-four');
 const dateDayFive = document.querySelector('.location-five .date-five');
 const weatherDayFive = document.querySelector('.current-five .weather-five');
 const minMaxDayFive = document.querySelector('.min-max-five');
+
+/*
+ const iconValue = {
+    clear : 'clear',
+    cloudy : 'clouds',
+     cloudy : 'few clouds',
+    drizzle: 'drizzle',
+    rain : 'rain',
+    thunder : 'thunderstorm',
+    snow : 'snow',
+    mist : 'mist'
+}
+
+function getIcons (icon) {
+    switch (icon){
+        case iconValue.clear:
+            return `http://openweathermap.org/img/wn/01D@2x.png`;
+        case iconValue.cloudy:
+            return `http://openweathermap.org/img/wn/02D@2x.png`;
+        case iconValue.drizzle:
+            return `http://openweathermap.org/img/wn/10d@2x.png`;
+        case iconValue.rain:
+            return `http://openweathermap.org/img/wn/10n@2x.png`;
+        case iconValue.thunder:
+            return `http://openweathermap.org/img/wn/11D@2x.png`;
+        case iconValue.snow:
+            return `http://openweathermap.org/img/wn/13D@2x.png`;
+        case iconValue.mist:
+            return `http://openweathermap.org/img/wn/50d@2x.png`;
+
+    }
+}
+
+ */
+
+
+
 //FUNCTIONS
 
 function setDate (d){
@@ -102,7 +140,8 @@ function displayResults (weather) {
     descriptionDiv.innerText = `${weather.list[0].weather[0].description}`;
     averageDiv.innerText = 'Feels like ' + Math.round(weather.list[0].main.feels_like) +'°c';
    console.log(weather.list);
-
+  // let icon = document.getElementById('icon');
+  // icon.src = getIcons(weather.list[0].weather[0].main);
 
     dateDayOne.innerText = `${weather.list[9].dt_txt}`;
     weatherDayOne.innerText = `${weather.list[9].weather[0].description}`;
