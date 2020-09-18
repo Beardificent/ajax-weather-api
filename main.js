@@ -64,7 +64,7 @@ function getResults () {
     let urlPartOne = 'https://api.openweathermap.org/data/2.5/forecast?q=';
     let city = document.getElementById('set-city').value;
    // let country = document.getElementById('set-country').value;
-    let urlPartTwo = '&units=metric&exclude=hourly&APPID=';
+    let urlPartTwo = '&units=metric&APPID=';
     let apiKey = config.MY_KEY;
     let urlFull = urlPartOne + city + urlPartTwo + apiKey;
     console.log(urlFull);
