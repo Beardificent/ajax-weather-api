@@ -35,18 +35,20 @@ const minMaxDayFive = document.querySelector('.min-max-five');
 //FUNCTIONS
 
 function setDate (d){
-    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
-        'September', 'October', 'November', 'December'
-    ];
-    let weekDays = [
-        'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
-    ];
-    let day = weekDays[d.getDay()];
-    let date = d.getDate();
-    let month = months [d.getMonth()];
-    let year = d.getFullYear();
+    for (let i = 0; i < 5; i++) {
+        let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+            'September', 'October', 'November', 'December'
+        ];
+        let weekDays = [
+            'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+        ];
+        let day = weekDays[d.getDay()];
+        let date = d.getDate();
+        let month = months [d.getMonth()];
+        let year = d.getFullYear();
 
-    return`${day} ${date} ${month} ${year}`;
+        return `${day} ${date} ${month} ${year}`;
+    }
 }
 
 
@@ -67,7 +69,7 @@ function getResults () {
     let urlPartTwo = '&units=metric&APPID=';
     let apiKey = config.MY_KEY;
     let urlFull = urlPartOne + city + urlPartTwo + apiKey;
-    console.log(urlFull);
+    //console.log(urlFull);
     fetch(urlFull)
         .then(weather => {
             return weather.json ();
@@ -79,38 +81,53 @@ function getResults () {
 
 function displayResults (weather) {
 
+  /*
+  fetch(urlOneCall)
+        .then(data => {
+            return data.json();
+        }).then(data => {
+
+    })
+        })
+
+        oneCallbase='https://api.openweathermap.org/data/2.5/onecall?'
+        altKey=config.ALT_KEY;
+        lat = data.
+
+   */
+
     theDateDiv.innerText = setDate(current);
     cityDiv.innerText = `${weather.city.name}, ${weather.city.country}`;
     currentTemperatureDiv.innerHTML= `${Math.round(weather.list[0].main.temp)}<span>°C</span>`;
     descriptionDiv.innerText = `${weather.list[0].weather[0].description}`;
-    averageDiv.innerText = 'Average temperature today is ' + (Math.round(weather.list[0].main.temp_min) + Math.round(weather.list[0].main.temp_max) / 2) +'°c';
-    console.log(weather.list);
+    averageDiv.innerText = 'Feels like ' + Math.round(weather.list[0].main.feels_like) +'°c';
+   console.log(weather.list);
 
 
     dateDayOne.innerText = `${weather.list[9].dt_txt}`;
     weatherDayOne.innerText = `${weather.list[9].weather[0].description}`;
-    minMaxDayOne.innerText = Math.round(weather.list[9].main.temp_min) + Math.round(weather.list[9].main.temp_max) / 2 +'°c';
+    minMaxDayOne.innerText = Math.round(weather.list[9].main.feels_like) +'°c';
 
 
     dateDayTwo.innerText = `${weather.list[17].dt_txt}`;
     weatherDayTwo.innerText = `${weather.list[17].weather[0].description}`;
-    minMaxDayTwo.innerText = Math.round(weather.list[17].main.temp_min) + Math.round(weather.list[17].main.temp_max) / 2 +'°c';
+    minMaxDayTwo.innerText = Math.round(weather.list[17].main.feels_like) +'°c';
 
 
     dateDayThree.innerText = `${weather.list[25].dt_txt}`;
     weatherDayThree.innerText = `${weather.list[25].weather[0].description}`;
-    minMaxDayThree.innerText = Math.round(weather.list[25].main.temp_min) + Math.round(weather.list[25].main.temp_max) / 2 +'°c';
+    minMaxDayThree.innerText = Math.round(weather.list[25].main.feels_like) +'°c';
 
 
 
     dateDayFour.innerText = `${weather.list[33].dt_txt}`;
     weatherDayFour.innerText = `${weather.list[33].weather[0].description}`;
-    minMaxDayFour.innerText = Math.round(weather.list[33].main.temp_min) + Math.round(weather.list[33].main.temp_max) / 2 +'°c';
+    minMaxDayFour.innerText = Math.round(weather.list[33].main.feels_like) +'°c';
 
 
     dateDayFive.innerText = `${weather.list[39].dt_txt}`;
     weatherDayFive.innerText = `${weather.list[39].weather[0].description}`;
-    minMaxDayFive.innerText = Math.round(weather.list[39].main.temp_min) + Math.round(weather.list[39].main.temp_max) / 2 +'°c';
+    minMaxDayFive.innerText = Math.round(weather.list[39].main.feels_like) +'°c';
 }
 
 
